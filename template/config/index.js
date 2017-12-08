@@ -1,81 +1,57 @@
-'use strict'
+'use strict';
 // Template version: 1.2.5
 // see http://vuejs-templates.github.io/webpack for documentation.
 
-const path = require('path')
-
+const path = require('path');
+const project_config = require('./project.js'); // 在配置生成路径时需要project_config中的相关信息，故预先导入
 module.exports = {
-  dev: {
-
-    // Paths
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {},
-
-    // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
-    errorOverlay: true,
-    notifyOnErrors: true,
-    poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-
-    // Use Eslint Loader?
-    // If true, your code will be linted during bundling and
-    // linting errors and warnings will be shown in the console.
-    useEslint: true,
-    // If true, eslint errors and warnings will also be shown in the error overlay
-    // in the browser.
-    showEslintErrorsInOverlay: false,
-
-    /**
-     * Source Maps
-     */
-
-    // https://webpack.js.org/configuration/devtool/#development
-    devtool: 'eval-source-map',
-
-    // If you have problems debugging vue-files in devtools,
-    // set this to false - it *may* help
-    // https://vue-loader.vuejs.org/en/options.html#cachebusting
-    cacheBusting: true,
-
-    // CSS Sourcemaps off by default because relative paths are "buggy"
-    // with this option, according to the CSS-Loader README
-    // (https://github.com/webpack/css-loader#sourcemaps)
-    // In our experience, they generally work as expected,
-    // just be aware of this issue when enabling this option.
-    cssSourceMap: false,
-  },
-
   build: {
-    // Template for index.html
+    // 服务器端配置
+    env: require('./prod.env'),
+    prodEnv: require('./prod.env'),
     index: path.resolve(__dirname, '../dist/index.html'),
-
-    // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-
-    /**
-     * Source Maps
-     */
-
-    productionSourceMap: true,
-    // https://webpack.js.org/configuration/devtool/#production
-    devtool: '#source-map',
-
+    assetsRoot: path.resolve(__dirname, '../dist'),// 公共资源地址
+    assetsSubDirectory: './' + project_config.static_root + '/',// 子文件夹前缀 // 在webpack2中编译需要加上后缀/ ，否则会报操作错误Error
+    assetsPublicPath: 'https://cdns1.dajiashequ.com/', // 静态地址前缀，使用网址以便对外发布
+    productionSourceMap: false,// 是否生成map文件(设成ture会额外生成一份map文件方便前端调试，但是由于vue.js编译后的代码就算加了map也看不懂，所以直接使用false即可)
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
     // npm install --save-dev compression-webpack-plugin
     productionGzip: false,
     productionGzipExtensions: ['js', 'css'],
-
     // Run the build command with an extra argument to
     // View the bundle analyzer report after build finishes:
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
-    bundleAnalyzerReport: process.env.npm_config_report
-  }
-}
+    bundleAnalyzerReport: process.env.npm_config_report,
+    DIST_TO: 'dajia-partybuilding-meeting-consumer/src/main/resources/html/',
+    CDN_AK: 'ycnbFvHAeJHQnmbQ4RwqemHxigXnb94ZpeTqMVjZ',
+    CDN_SK: '8rX_F0z5TbY5d5SBOtuwr91lzS_nL-sUraxX0_ck',
+    CDN_BUCKET: 'dajia-resources'
+  },
+  dev: {
+    // 本地调试配置
+    env: require('./dev.env'),
+    port: 8081, // 调试地址端口
+    autoOpenBrowser: true,
+    assetsSubDirectory: '.',// 子文件夹前缀
+    assetsPublicPath: '/',
+    proxyTable: {
+      // '/api': {
+      //     target: 'http://192.168.31.88:8080',
+      //     changeOrigin: true,
+      //     pathRewrite: {
+      //         '^/api': ''
+      //     }
+      // }
+    }, // 可以在这里配置端口转发(解决本地调试时的跨域问题),这边为了方便，我就直接在dev-server代码中进行修改了
+    // CSS Sourcemaps off by default because relative paths are "buggy"
+    // with this option, according to the CSS-Loader README
+    // (https://github.com/webpack/css-loader#sourcemaps)
+    // In our experience, they generally work as expected,
+    // just be aware of this issue when enabling this option.
+    cssSourceMap: false
+  },
+  project_config: project_config
+};
