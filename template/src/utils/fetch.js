@@ -9,23 +9,21 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use((config) => {
   // 需要在请求发出前做的全局处理逻辑可以添加在这里
-  console.log('请求前预处理...');
   return config;
 }, (error) => {
   // 可以在这里统一处理请求错误
-  console.log('请求错误处理...'); // for debug
   Promise.reject(error);
 });
 
 // respone拦截器
 service.interceptors.response.use((response) => {
-  if (!response.success) {
-    console.log('处理错误...');
+  if (!response.data.success) {
+    // 可以在这里统一处理响应错误
     return Promise.reject(response.data);
   }
-  return response.data;
+  return response.data.data;
 }, (error) => {
-  console.log('处理错误...');
+  // 可以在这里统一处理响应错误
   return Promise.reject(error);
 });
 export default service;

@@ -31,6 +31,13 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     // single line needn't comma
-    "comma-dangle": [2, "never"]
+    "comma-dangle": ["error", "never"],
+    "arrow-body-style": 0,
+    "object-shorthand": 0,
+    "func-names": ["error", "never"],
+    "no-param-reassign": 0,
+    "array-callback-return": 0,
+    "prefer-arrow-callback": 0,
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   }
 };
