@@ -1,7 +1,7 @@
 "use strict";
 
-let name = 'dajia-vuedemo-web';
-let debugWebServiceName = 'dajia-vuedemo-consumer';
+let name = '{{name}}';
+let debugWebServiceName = '{{debugWebServiceName}}';
 let debugWebServiceResourcePath = '../../' + debugWebServiceName + '/src/main/resources/';
 
 	module.exports = {
