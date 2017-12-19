@@ -26,6 +26,11 @@ module.exports = {
       "required": true,
       "message": "Project name"
     },
+	  "debugWebServiceName": {
+		  "type": "string",
+		  "required": true,
+		  "message": "Debug Web Service Name"
+	  },
     "description": {
       "type": "string",
       "required": false,
