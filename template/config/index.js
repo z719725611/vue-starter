@@ -57,10 +57,10 @@ module.exports = {
     // 服务器端配置
     env: require('./debug.env'),
     prodEnv: require('./debug.env'),
-    index: path.resolve(__dirname, '../dist/index.html'),
-    assetsRoot: path.resolve(__dirname, '../dist'),// 公共资源地址
-    assetsSubDirectory: './' + project_config.static_root + '/',// 子文件夹前缀 // 在webpack2中编译需要加上后缀/ ，否则会报操作错误Error
-    assetsPublicPath: 'https://cdns1.dajiashequ.com/', // 静态地址前缀，使用网址以便对外发布
+    index: path.resolve(__dirname, project_config.debugWebServiceResourcePath + 'html/vue/index.html'),
+    assetsRoot: path.resolve(__dirname, project_config.debugWebServiceResourcePath + 'html/vue'),// 公共资源地址
+    assetsSubDirectory: project_config.debugWebServiceResourcePath + 'static/vue',// 子文件夹前缀 // 在webpack2中编译需要加上后缀/ ，否则会报操作错误Error
+    assetsPublicPath: '/', // 静态地址前缀，使用网址以便对外发布
     productionSourceMap: false,// 是否生成map文件(设成ture会额外生成一份map文件方便前端调试，但是由于vue.js编译后的代码就算加了map也看不懂，所以直接使用false即可)
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
@@ -73,10 +73,6 @@ module.exports = {
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report,
-    DIST_TO: 'dajia-partybuilding-meeting-consumer/src/main/resources/html/',
-    CDN_AK: 'ycnbFvHAeJHQnmbQ4RwqemHxigXnb94ZpeTqMVjZ',
-    CDN_SK: '8rX_F0z5TbY5d5SBOtuwr91lzS_nL-sUraxX0_ck',
-    CDN_BUCKET: 'dajia-resources'
   },
   project_config: project_config
 };

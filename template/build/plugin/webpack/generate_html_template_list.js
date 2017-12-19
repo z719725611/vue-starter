@@ -27,7 +27,7 @@ exports.generate_html_template_list = function(env) {
           'manifest',
           'vendor',
         ];
-        if (env.NODE_ENV !== 'production') {
+        if (env.NODE_ENV !== 'production' && env.NODE_ENV !== 'debug') {
           // 当环境不为production线上时
           // 额外注入热加载代码
           // 以实现文件的实时更新

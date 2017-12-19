@@ -20,14 +20,14 @@ const env = process.env.NODE_ENV === 'testing'
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
-      sourceMap: config.build.productionSourceMap,
+      sourceMap: config.debug.productionSourceMap,
       extract: true,
       usePostCSS: true
     })
   },
-  devtool: config.build.productionSourceMap ? config.build.devtool : false,
+  devtool: config.debug.productionSourceMap ? config.debug.devtool : false,
   output: {
-    path: config.build.assetsRoot,
+    path: config.debug.assetsStaticRoot,
     filename: utils.assetsPath('[name]/js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
@@ -42,7 +42,7 @@ const webpackConfig = merge(baseWebpackConfig, {
           warnings: false
         }
       },
-      sourceMap: config.build.productionSourceMap,
+      sourceMap: config.debug.productionSourceMap,
       parallel: true
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -57,7 +57,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({
-      cssProcessorOptions: config.build.productionSourceMap
+      cssProcessorOptions: config.debug.productionSourceMap
         ? { safe: true, map: { inline: false } }
         : { safe: true }
     })
@@ -66,7 +66,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: config.build.assetsSubDirectory,
+        to: config.debug.assetsSubDirectory,
         ignore: ['.*']
       }
     ]),
@@ -85,13 +85,13 @@ const webpackConfig = merge(baseWebpackConfig, {
     map_json_generator.generate_map_json({
       // output file path, relative to process.cwd()
       output: './map/' + config.project_config.name + '/map' + '.json',
-      assetsPath: config.build.assetsPublicPath, // 文件前缀地址
+      assetsPath: config.debug.assetsPublicPath, // 文件前缀地址
       static_root: config.project_config.static_root, // 静态资源根路径
     })
   ])
 });
 
-if (config.build.productionGzip) {
+if (config.debug.productionGzip) {
   const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
   webpackConfig.plugins.push(
@@ -100,7 +100,7 @@ if (config.build.productionGzip) {
       algorithm: 'gzip',
       test: new RegExp(
         '\\.(' +
-        config.build.productionGzipExtensions.join('|') +
+        config.debug.productionGzipExtensions.join('|') +
         ')$'
       ),
       threshold: 10240,
@@ -109,7 +109,7 @@ if (config.build.productionGzip) {
   )
 }
 
-if (config.build.bundleAnalyzerReport) {
+if (config.debug.bundleAnalyzerReport) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }

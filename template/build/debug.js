@@ -2,7 +2,7 @@
 require('./check-versions')();
 require('shelljs/global');
 
-process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'debug'
 const ora = require('ora');
 const rm = require('rimraf');
 const path = require('path');
