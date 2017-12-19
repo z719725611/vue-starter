@@ -1,7 +1,7 @@
 "use strict";
 
-let name = '{{name}}';
-let debugWebServiceName = '{{debugWebServiceName}}';
+let name = 'dajia-vuedemo-web';
+let debugWebServiceName = 'dajia-vuedemo-consumer';
 let debugWebServiceResourcePath = '../../' + debugWebServiceName + '/src/main/resources/';
 
 	module.exports = {
@@ -16,7 +16,7 @@ let debugWebServiceResourcePath = '../../' + debugWebServiceName + '/src/main/re
       page2: './src/view/page2' // 示例项目，利用个人blog提供公共api进行测试
     },
     entry: {
-      page1: '/' + name + "/page1/index.html",
-      page2: '/' + name + "/page2/index.html"
+      page1: '/' + name + "/page1/page1.html",
+      page2: '/' + name + "/page2/page2.html"
     }
 };

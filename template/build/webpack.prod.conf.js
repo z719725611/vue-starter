@@ -15,7 +15,7 @@ const QiniuPlugin = require('qiniu-webpack-plugin');
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
-  : process.env.NODE_ENV === 'production' ? require('../config/prod.env') : require('../config/debug.env');
+  : process.env.NODE_ENV === 'debug' ? require('../config/debug.env') : require('../config/prod.env');
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {

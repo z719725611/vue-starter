@@ -62,7 +62,7 @@ const uri = 'http://localhost:' + port;
 // 直接打开最新添加的项目,方便调试
 let project_list = config.project_config.project;
 let lasted_project_index = Object.keys(project_list).length - 1;
-let lasted_project_uri = uri + '/' + config.project_config.static_root + '/' + Object.keys(project_list)[lasted_project_index] + '/index.html'
+let lasted_project_uri = uri + '/' + config.project_config.static_root + '/' + Object.keys(project_list)[lasted_project_index] + '/' + Object.keys(project_list)[lasted_project_index] + '.html'
 console.log(`lasted_project_uri => ${lasted_project_uri}`);
 let _resolve;
 const readyPromise = new Promise(resolve => {
