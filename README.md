@@ -47,7 +47,7 @@ localhost:dajia-vuedemo lihuanzhong$ vue init ~/Documents/workspace/dajia-vue-sk
 
 1.在Terminal工具栏中进入dajia-vuedemo-web目录
 
-由于chromedriver默认从https://chromedriver.storage.googleapis.com/2.33/chromedriver_mac64.zip安装，但是国内方位这个地址很慢所以我们先执行下述命令：
+由于chromedriver默认从 https://chromedriver.storage.googleapis.com/2.33/chromedriver_mac64.zip 安装，但是国内方位这个地址很慢所以我们先执行下述命令：
 
 ``` bash
   npm install chromedriver --chromedriver_cdnurl=https://npm.taobao.org/mirrors/chromedriver
