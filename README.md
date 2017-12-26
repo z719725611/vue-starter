@@ -41,19 +41,19 @@ localhost:dajia-vuedemo lihuanzhong$ vue init ~/Documents/workspace/dajia-vue-sk
      Documentation can be found at https://vuejs-templates.github.io/webpack
 ```
 
-注意：其中需要着重说明一下的是Debug Web Service Name提示的输入dajia-vuedemo-consumer，这是联调/发布用的web service工程名，工程骨架会将dajia-vuedemo-consumer/src/main/resources/目录作为联调以及发布的目录，当前实例使用dajia-springboot-archetype创建，所以dajia-vuedemo-consumer/src/main/resources/目录必然存在
+**注意：其中需要着重说明一下的是Debug Web Service Name提示的输入dajia-vuedemo-consumer，这是联调/发布用的web service工程名，工程骨架会将dajia-vuedemo-consumer/src/main/resources/目录作为联调以及发布的目录，当前实例使用dajia-springboot-archetype创建，所以dajia-vuedemo-consumer/src/main/resources/目录必然存在**
 
 ## 开发/联调/发布前准备：
 
 1.在Terminal工具栏中进入dajia-vuedemo-web目录
 
-由于chromedriver默认从 https://chromedriver.storage.googleapis.com/2.33/chromedriver_mac64.zip 安装，但是国内方位这个地址很慢所以我们先执行下述命令：
+由于chromedriver默认从 https://chromedriver.storage.googleapis.com/2.33/chromedriver_mac64.zip 安装，但是国内访问这个地址很慢所以我们先执行下述命令：
 
 ``` bash
   npm install chromedriver --chromedriver_cdnurl=https://npm.taobao.org/mirrors/chromedriver
 ```
 
-2.然后再执行下述命令：
+2.然后再执行下述命令安装依赖：
 
 ``` bash
   npm install
@@ -72,3 +72,6 @@ localhost:dajia-vuedemo lihuanzhong$ vue init ~/Documents/workspace/dajia-vue-sk
 **提示：此时会将生成的html文件拷贝到dajia-vuedemo-consumer/src/main/resources/html/vue/目录下，静态资源会拷贝到dajia-vuedemo-consumer/src/main/resources/static/vue/目录下在Controller中加载html页与其他html没有任何区别**
 
 4.发布工程使用npm run build，此时会将html文件拷贝到dajia-vuedemo-consumer/src/main/resources/html/vue/目录下，而静态资源文件会上传到cdn上，同时html中引用的也是cdn服务器中的静态资源
+
+## 常见问题:
+**未完待续**
