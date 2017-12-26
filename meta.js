@@ -43,9 +43,9 @@ module.exports = {
     }
   },
   "filters": {
-    "test/unit/jest.conf.js": "false",
-    "static/ueditor/**": "false"
+    "test/unit/jest.conf.js": "false"
   },
+  "skipInterpolation": "static/ueditor/**",
   "complete": function (data) {
     const packageJsonFile = path.join(
       data.inPlace ? "" : data.destDirName,
