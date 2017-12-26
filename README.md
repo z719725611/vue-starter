@@ -67,7 +67,46 @@ localhost:dajia-vuedemo lihuanzhong$ vue init ~/Documents/workspace/dajia-vue-sk
 
 2.前端开发态可以使用npm run dev，这里不做多说，比较简单
 
-3.与Web Service联调，使用npm run debug
+3.与Web Service联调，使用npm run debug，构建后dajia-vuedemo-consumer/src/main/resources/目录结构大致如下：
+
+``` bash
+.
+|____html
+| |____vue
+| | |____page2
+| | | |____page2.html
+| | |____page1
+| | | |____page1.html
+| | |____ueditor
+| | | |____ueditor.html
+| |____hello.html
+|____static
+| |____vue
+| | |____page2
+| | | |____css
+| | | | |____page2.a2b7b1cfa033666c0b8ba7f1676c14dd.css
+| | | |____js
+| | | | |____page2.a2ced8577505edb7daf0.js
+| | |____page1
+| | | |____css
+| | | | |____page1.a3ee18c87eb61e38455f1fbbe892c96e.css
+| | | |____js
+| | | | |____page1.56beacff3a641bf561b8.js
+| | |____ueditor
+| | | |____css
+| | | |________...
+| | | |____js
+| | | |________...
+|____templates
+| |____demo
+| | |____word.ftl
+| | |____hello.ftl
+| |____error.ftl
+|____log4j.properties
+|____application.properties
+|____spring
+| |____spring-dubbo-reference.xml
+```
 
 **提示：此时会将生成的html文件拷贝到dajia-vuedemo-consumer/src/main/resources/html/vue/目录下，静态资源会拷贝到dajia-vuedemo-consumer/src/main/resources/static/vue/目录下在Controller中加载html页与其他html没有任何区别**
 
