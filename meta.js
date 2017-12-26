@@ -43,7 +43,8 @@ module.exports = {
     }
   },
   "filters": {
-    "test/unit/jest.conf.js": "false"
+    "test/unit/jest.conf.js": "false",
+    "static/ueditor/**": "false"
   },
   "complete": function (data) {
     const packageJsonFile = path.join(

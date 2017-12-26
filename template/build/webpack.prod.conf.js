@@ -33,8 +33,10 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
+	  // UEDITOR_HOME_URL 定义指定生产环境引用ueditor相关资源的路径
     new webpack.DefinePlugin({
-      'process.env': env
+      'process.env': env,
+	    UEDITOR_HOME_URL:JSON.stringify("/vue/ueditor/js/")
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
