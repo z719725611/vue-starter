@@ -1,66 +1,46 @@
-# vue-webpack-boilerplate
+#准备工作：
+	先使用dajia-springboot-archetype创建项目，例如：dajia-vuedemo
+	目录树大致如下：
+	.
+	|____dajia-vuedemo
+	| |____dajia-vuedemo-api
+	| |____dajia-vuedemo-provider
+	| |____pom.xml
+	| |____README.md
+	| |____dajia-vuedemo-consumer
+#新建web工程：
+	1.使用idea打开dajia-vuedemo工程
+	2.打开Terminal工具栏，当前终端应该处在dajia-vuedemo目录下
+	3.通常情况下我们将web工程命名为{projectName}-web，在这里应该是dajia-vuedemo-web
+		当前路径下执行vue init HUI-UI/vue-starter#develop dajia-vuedemo-web 命令行提示大致如下：
+		localhost:dajia-vuedemo lihuanzhong$ vue init ~/Documents/workspace/dajia-vue-skeleton/vue-starter/ dajia-vuedemo-web
 
-> A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction.
+		? Project name dajia-vuedemo-web
+		? Debug Web Service Name dajia-vuedemo-consumer
+		? Project description 大家社区Vue前端工程Demo
+		? Author lihuanzhong <terence_lee100@hotmail.com>
 
-> This template is Vue 2.0 compatible. For Vue 1.x use this command: `vue init webpack#1.0 my-project`
+	   		vue-cli · Generated "dajia-vuedemo-web".
 
-## Documentation
-
-- [For this template](http://vuejs-templates.github.io/webpack): common questions specific to this template are answered and each part is described in greater detail
-- [For Vue 2.0](http://vuejs.org/guide/): general information about how to work with Vue, not specific to this template
-
-## Usage
-
-This is a project template for [vue-cli](https://github.com/vuejs/vue-cli). **It is recommended to use npm 3+ for a more efficient dependency tree.**
-
-``` bash
-$ npm install -g vue-cli
-$ vue init webpack my-project
-$ cd my-project
-$ npm install
-$ npm run dev
-```
-
-This will scaffold the project using the `master` branch. If you wish to use the latest version of the webpack template, do the following instead:
-
-``` bash
-$ vue init webpack#develop my-project
-```
-
-:warning: **The develop branch is not considered stable and can contain bugs or not build at all, so use at your own risk.**
-
-The development server will run on port 8080 by default. If that port is already in use on your machine, the next free port will be used.
-
-## What's Included
-
-- `npm run dev`: first-in-class development experience.
-  - Webpack + `vue-loader` for single file Vue components.
-  - State preserving hot-reload
-  - State preserving compilation error overlay
-  - Lint-on-save with ESLint
-  - Source maps
-
-- `npm run build`: Production ready build.
-  - JavaScript minified with [UglifyJS v3](https://github.com/mishoo/UglifyJS2/tree/harmony).
-  - HTML minified with [html-minifier](https://github.com/kangax/html-minifier).
-  - CSS across all components extracted into a single file and minified with [cssnano](https://github.com/ben-eb/cssnano).
-  - Static assets compiled with version hashes for efficient long-term caching, and an auto-generated production `index.html` with proper URLs to these generated assets.
-  - Use `npm run build --report`to build with bundle size analytics.
-
-- `npm run unit`: Unit tests run in [JSDOM](https://github.com/tmpvar/jsdom) with [Jest](https://facebook.github.io/jest/), or in PhantomJS with Karma + Mocha + karma-webpack.
-  - Supports ES2015+ in test files.
-  - Easy mocking.
-
-- `npm run e2e`: End-to-end tests with [Nightwatch](http://nightwatchjs.org/).
-  - Run tests in multiple browsers in parallel.
-  - Works with one command out of the box:
-    - Selenium and chromedriver dependencies automatically handled.
-    - Automatically spawns the Selenium server.
-
-### Fork It And Make Your Own
-
-You can fork this repo to create your own boilerplate, and use it with `vue-cli`:
-
-``` bash
-vue init username/repo my-project
-```
+	   		To get started:
+	   
+	     	cd dajia-vuedemo-web
+	     	npm install
+	     	npm run dev
+	   
+	   		Documentation can be found at https://vuejs-templates.github.io/webpack
+		注意：其中需要着重说明一下的是Debug Web Service Name提示的输入dajia-vuedemo-consumer，这是联调/发布用的web service工程名，工程骨架会将dajia-vuedemo-consumer/src/main/resources/目录作为联调以及发布的目录，当前实例使用dajia-springboot-archetype创建，所以dajia-vuedemo-consumer/src/main/resources/目录必然存在
+#开发/联调/发布前准备：
+	1.在Terminal工具栏中进入dajia-vuedemo-web目录
+		由于chromedriver默认从https://chromedriver.storage.googleapis.com/2.33/chromedriver_mac64.zip安装，但是国内方位这个地址很慢所以我们先执行下述命令：
+		npm install chromedriver --chromedriver_cdnurl=https://npm.taobao.org/mirrors/chromedriver
+	2.然后再执行下述命令：
+		npm install
+		此时大多数情况下都能正常安装完成，如果出现失败的情况可以根据错误提示去问下度娘，大多都能解决
+#web工程开发/联调/发布：
+	1.在Terminal工具栏中进入dajia-vuedemo-web目录
+	2.前端开发态可以使用npm run dev，这里不做多说，比较简单
+	3.与Web Service联调，使用npm run debug
+		提示：此时会将生成的html文件拷贝到dajia-vuedemo-consumer/src/main/resources/html/vue/目录下，静态资源会拷贝到dajia-vuedemo-consumer/src/main/resources/static/vue/目录下
+		在Controller中加载html页与其他html没有任何区别
+	4.发布工程使用npm run build，此时会将html文件拷贝到dajia-vuedemo-consumer/src/main/resources/html/vue/目录下，而静态资源文件会上传到cdn上，同时html中引用的也是cdn服务器中的静态资源
