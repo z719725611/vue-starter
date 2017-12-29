@@ -56,7 +56,7 @@ localhost:dajia-vuedemo lihuanzhong$ vue init ~/Documents/workspace/dajia-vue-sk
 2.然后再执行下述命令安装依赖：
 
 ``` bash
-  npm install
+  npm install --registry=https://nexus.g2work.com/repository/dajia-npm-group/
 ```
 
 此时大多数情况下都能正常安装完成，如果出现失败的情况可以根据错误提示去问下度娘，大多都能解决
