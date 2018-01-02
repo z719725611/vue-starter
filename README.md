@@ -55,6 +55,7 @@ localhost:dajia-vuedemo lihuanzhong$ vue init ~/Documents/workspace/dajia-vue-sk
   npm config set chromedriver_cdnurl https://npm.taobao.org/mirrors/chromedriver/
 ```
 **如果开发人员发现还有别的依赖包安装缓慢，可以将对应的taobao镜像设置方式补充到这里来**
+
 2.然后再执行下述命令安装依赖：
 
 ``` bash
