@@ -9,7 +9,9 @@ exports.generate_html_template_list = function(env) {
   let template_list = [];
   for (let project of Object.keys(config.project_config.project)) {
     let html_template_config = {
-      filename: config.build.assetsSubDirectory + project + '/index.html',
+      filename: process.env.NODE_ENV === 'debug'
+          ? config.debug.assetsRoot + '/html/vue/' + project + '/' + project + '.html'
+          : config.build.assetsSubDirectory + project + '/' + project + '.html',
       template: 'index.html',
       inject: true,
       minify: {
@@ -27,7 +29,7 @@ exports.generate_html_template_list = function(env) {
           'manifest',
           'vendor',
         ];
-        if (env.NODE_ENV !== 'production') {
+        if (env.NODE_ENV !== 'production' && env.NODE_ENV !== 'debug') {
           // 当环境不为production线上时
           // 额外注入热加载代码
           // 以实现文件的实时更新

@@ -15,7 +15,7 @@ const QiniuPlugin = require('qiniu-webpack-plugin');
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
-  : require('../config/prod.env');
+  : process.env.NODE_ENV === 'debug' ? require('../config/debug.env') : require('../config/prod.env');
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -28,13 +28,15 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
+    filename: utils.assetsPath('[name]/js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
+	  // UEDITOR_HOME_URL 定义指定生产环境引用ueditor相关资源的路径
     new webpack.DefinePlugin({
-      'process.env': env
+      'process.env': env,
+	    UEDITOR_HOME_URL:JSON.stringify("/vue/ueditor/js/")
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -48,7 +50,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.OccurrenceOrderPlugin(),
     // extract css into its own file
     new ExtractTextPlugin({
-      filename: utils.assetsPath('css/[name].[contenthash].css'),
+      filename: utils.assetsPath('[name]/css/[name].[contenthash].css'),
       // set the following option to `true` if you want to extract CSS from
       // codesplit chunks into this main css file as well.
       // This will result in *all* of your app's CSS being loaded upfront.

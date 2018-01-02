@@ -19,8 +19,10 @@ module.exports = merge(baseWebpackConfig, {
   // cheap-module-eval-source-map is faster for development
   devtool: '#cheap-module-source-map',
   plugins: [
+	  // UEDITOR_HOME_URL 定义指定开发环境引用ueditor相关资源的路径
     new webpack.DefinePlugin({
-      'process.env': config.dev.env
+      'process.env': config.dev.env,
+	    UEDITOR_HOME_URL:JSON.stringify("/ueditor/js/")
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.

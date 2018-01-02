@@ -26,6 +26,11 @@ module.exports = {
       "required": true,
       "message": "Project name"
     },
+	  "debugWebServiceName": {
+		  "type": "string",
+		  "required": true,
+		  "message": "Debug Web Service Name"
+	  },
     "description": {
       "type": "string",
       "required": false,
@@ -40,6 +45,7 @@ module.exports = {
   "filters": {
     "test/unit/jest.conf.js": "false"
   },
+  "skipInterpolation": "static/ueditor/**",
   "complete": function (data) {
     const packageJsonFile = path.join(
       data.inPlace ? "" : data.destDirName,

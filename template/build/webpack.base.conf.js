@@ -19,15 +19,16 @@ const createLintingRule = () => ({
   }
 });
 
+
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: config.project_config.project, // 根据不同的入口生成对应的app.js,
   output: {
-    path: config.build.assetsRoot,
+    path: process.env.NODE_ENV === 'debug' ? config.debug.assetsRoot : config.build.assetsRoot,
     filename: '[name].js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+      : process.env.NODE_ENV === 'debug' ? config.debug.assetsPublicPath : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

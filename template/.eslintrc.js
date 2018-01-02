@@ -8,6 +8,7 @@ module.exports = {
   },
   env: {
     browser: true,
+    es6: true
   },
   extends: 'airbnb-base',
   // required to lint *.vue files
@@ -29,7 +30,7 @@ module.exports = {
       optionalDependencies: ['test/unit/index.js']
     }],
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'debug' ? 'error' : 'off',
     // single line needn't comma
     "comma-dangle": ["error", "never"],
     "arrow-body-style": 0,
