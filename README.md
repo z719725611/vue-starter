@@ -47,12 +47,14 @@ localhost:dajia-vuedemo lihuanzhong$ vue init ~/Documents/workspace/dajia-vue-sk
 
 1.在Terminal工具栏中进入dajia-vuedemo-web目录
 
-由于chromedriver默认从 https://chromedriver.storage.googleapis.com/2.33/chromedriver_mac64.zip 安装，但是国内访问这个地址很慢所以我们先执行下述命令：
+由于部分依赖包会从git、google之类的网站下载，但是国内网络原因导致这些下载会非常慢，可以执行下述命令将部分依赖下载改到taobao镜像上：
 
 ``` bash
-  npm install chromedriver --chromedriver_cdnurl=https://npm.taobao.org/mirrors/chromedriver
+  npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/
+  npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/
+  npm config set chromedriver_cdnurl https://npm.taobao.org/mirrors/chromedriver/
 ```
-
+**如果开发人员发现还有别的依赖包安装缓慢，可以将对应的taobao镜像设置方式补充到这里来**
 2.然后再执行下述命令安装依赖：
 
 ``` bash
