@@ -2,12 +2,15 @@
 
 let name = '{{name}}';
 let debugWebServiceName = '{{debugWebServiceName}}';
+let publishWebServiceName = '{{publishWebServiceName}}';
 let debugWebServiceResourcePath = '../../' + debugWebServiceName + '/target/ROOT/WEB-INF/classes/';
+let publishWebServiceResourcePath = '../../' + publishWebServiceName + '/src/main/resources/';
 
 module.exports = {
     name: name, // 项目名：multi
     static_root: name,//静态资源路径(线上的assets,html,js文件夹所在路径)
     debugWebServiceResourcePath: debugWebServiceResourcePath, // 调试目录
+    publishWebServiceResourcePath: publishWebServiceResourcePath, // 发布目录
     project: {
         // 项目列表
         // 组织格式 ： 项目名 => 以项目根目录为基准的index.vue路径
