@@ -49,6 +49,8 @@ localhost:dajia-vuedemo lihuanzhong$ vue init ~/Documents/workspace/dajia-vue-sk
 
 由于部分依赖包会从git、google之类的网站下载，但是国内网络原因导致这些下载会非常慢，可以执行下述命令将部分依赖下载改到taobao镜像上：
 
+**下述设置为全局设置，只需要设置一次后无需再次设置**
+
 ``` bash
   npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/
   npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/
