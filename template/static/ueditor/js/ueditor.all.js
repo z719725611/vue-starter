@@ -24407,9 +24407,13 @@ UE.plugin.register('section', function (){
 UE.plugin.register('simpleupload', function (){
     var me = this,
         isLoaded = false,
-        containerBtn;
+        containerBtn,
+        uploadToken;
+
+
 
     function initUploadBtn(){
+        getCdnToken();
         var w = containerBtn.offsetWidth || 20,
             h = containerBtn.offsetHeight || 20,
             btnIframe = document.createElement('iframe'),
@@ -24448,6 +24452,8 @@ UE.plugin.register('simpleupload', function (){
             var form = btnIframeDoc.getElementById('edui_form_' + timestrap);
             var input = btnIframeDoc.getElementById('edui_input_' + timestrap);
             var iframe = btnIframeDoc.getElementById('edui_iframe_' + timestrap);
+
+            me.uploadImgID = 'edui_input_' + timestrap;
 
             domUtils.on(input, 'change', function(){
                 if(!input.value) return;
@@ -24532,6 +24538,58 @@ UE.plugin.register('simpleupload', function (){
 
         btnIframe.style.cssText = btnStyle;
         containerBtn.appendChild(btnIframe);
+
+        me.initCdnUpload = initCdnUploadEvent;
+
+        me.initCdnUpload();
+    }
+
+    function getCdnToken(){
+        console.log("getCdnToken.......");
+        if($("#_currentUploadToken").length > 0){
+            var uploadTokenJson = $("#_currentUploadToken").html();
+            uploadToken = $.parseJSON(uploadTokenJson);
+            return uploadToken;
+        }
+
+        $.ajax({
+            url : "/file/getUploadToken.json",
+            dataType : 'JSON',
+            data : {
+                isAuth : me.uploadTokenIsAuth || false
+            },
+            type : 'GET',
+            async : false,
+            success: function(data){
+                console.log("getUploadToken.......");
+                uploadToken = data.uploadToken;
+                var uploadTokenDiv = $("<div id = '_currentUploadToken'></div>");
+                uploadTokenDiv.html(JSON.stringify(uploadToken)).hide();
+                $("body").append(uploadTokenDiv);
+                return uploadToken;
+            }
+        });
+    }
+
+    // 初始化cdn 上传
+    function initCdnUploadEvent(){
+        if(!me.initCdnUpload){
+            return;
+        }
+        var containerBtnId = me.uploadImgID;
+        containerBtn.id=containerBtnId;
+        var cdnUploader = null;
+        try{
+            console.log(containerBtnId);
+            cdnUploader = new UeditorCDNUpload(containerBtnId, getCdnToken(),
+                "default", 9, me);
+            cdnUploader.init();
+            me.initCdnUpload = function(){
+                console.log("init upload ");
+            };
+        }catch(e){
+            console.log(e);
+        }
     }
 
     return {

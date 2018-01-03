@@ -2,7 +2,7 @@
 
 let name = '{{name}}';
 let debugWebServiceName = '{{debugWebServiceName}}';
-let debugWebServiceResourcePath = '../../' + debugWebServiceName + '/src/main/resources/';
+let debugWebServiceResourcePath = '../../' + debugWebServiceName + '/target/ROOT/WEB-INF/classes/';
 
 module.exports = {
     name: name, // 项目名：multi

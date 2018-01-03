@@ -11,11 +11,20 @@ import routes from './router';
 import store from './store';
 import './mock/index';
 
+import '../../../static/cdn/libs/moxie.js'
+import '../../../static/cdn/libs/plupload.dev.js'
+import '../../../static/cdn/libs/uuid.js'
+import '../../../static/cdn/libs/qiniu.js'
+import '../../../static/cdn/libs/zh_CN.js'
+
+import '../../../static/cdn/js/CDNUpload.js'
+import '../../../static/cdn/js/FileProgress.js'
+import '../../../static/cdn/js/UeditorCDNUpload.js'
 
 import '../../../static/ueditor/js/ueditor.config.js'
-import '../../../static/ueditor/js/ueditor.all.min.js'
+import '../../../static/ueditor/js/ueditor.all.js'
 import '../../../static/ueditor/js/lang/zh-cn/zh-cn.js'
-import '../../../static/ueditor/js/ueditor.parse.min.js'
+import '../../../static/ueditor/js/ueditor.parse.js'
 
 Vue.config.productionTip = false;
 

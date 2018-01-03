@@ -36,7 +36,8 @@ const webpackConfig = merge(baseWebpackConfig, {
 	  // UEDITOR_HOME_URL 定义指定生产环境引用ueditor相关资源的路径
     new webpack.DefinePlugin({
       'process.env': env,
-	    UEDITOR_HOME_URL:JSON.stringify("/vue/ueditor/js/")
+	    UEDITOR_HOME_URL:JSON.stringify("/vue/ueditor/js/"),
+	    UEDITOR_INIT_URL:JSON.stringify("/file/initUeditor")
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -62,7 +63,11 @@ const webpackConfig = merge(baseWebpackConfig, {
       cssProcessorOptions: config.build.productionSourceMap
         ? { safe: true, map: { inline: false } }
         : { safe: true }
-    })
+    }),
+	  new webpack.ProvidePlugin({
+		  jQuery: "jquery",
+		  $: "jquery"
+	  })
   ].concat(html_template_generator.generate_html_template_list(env)).concat([
     // copy custom static assets
     new CopyWebpackPlugin([

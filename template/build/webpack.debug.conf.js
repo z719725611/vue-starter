@@ -28,25 +28,26 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.debug.productionSourceMap ? config.debug.devtool : false,
   output: {
     path: config.debug.assetsStaticRoot,
-    filename: utils.assetsPath('[name]/js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    filename: utils.assetsPath('[name]/js/[name].js'),
+    chunkFilename: utils.assetsPath('js/[id].js')
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
 	  // UEDITOR_HOME_URL 定义指定联调环境引用ueditor相关资源的路径
     new webpack.DefinePlugin({
       'process.env': env,
-	    UEDITOR_HOME_URL:JSON.stringify("/vue/ueditor/js/")
+	    UEDITOR_HOME_URL:JSON.stringify("/vue/ueditor/js/"),
+	    UEDITOR_INIT_URL:JSON.stringify("/file/initUeditor")
     }),
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        compress: {
-          warnings: false
-        }
-      },
-      sourceMap: config.debug.productionSourceMap,
-      parallel: true
-    }),
+    // new UglifyJsPlugin({
+    //   uglifyOptions: {
+    //     compress: {
+    //       warnings: false
+    //     }
+    //   },
+    //   sourceMap: config.debug.productionSourceMap,
+    //   parallel: true
+    // }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -62,7 +63,11 @@ const webpackConfig = merge(baseWebpackConfig, {
       cssProcessorOptions: config.debug.productionSourceMap
         ? { safe: true, map: { inline: false } }
         : { safe: true }
-    })
+    }),
+	  new webpack.ProvidePlugin({
+		  jQuery: "jquery",
+		  $: "jquery"
+	  })
   ].concat(html_template_generator.generate_html_template_list(env)).concat([
     // copy custom static assets
     new CopyWebpackPlugin([
@@ -96,19 +101,19 @@ const webpackConfig = merge(baseWebpackConfig, {
 if (config.debug.productionGzip) {
   const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
-  webpackConfig.plugins.push(
-    new CompressionWebpackPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: new RegExp(
-        '\\.(' +
-        config.debug.productionGzipExtensions.join('|') +
-        ')$'
-      ),
-      threshold: 10240,
-      minRatio: 0.8
-    })
-  )
+  // webpackConfig.plugins.push(
+  //   new CompressionWebpackPlugin({
+  //     asset: '[path].gz[query]',
+  //     algorithm: 'gzip',
+  //     test: new RegExp(
+  //       '\\.(' +
+  //       config.debug.productionGzipExtensions.join('|') +
+  //       ')$'
+  //     ),
+  //     threshold: 10240,
+  //     minRatio: 0.8
+  //   })
+  //)
 }
 
 if (config.debug.bundleAnalyzerReport) {
