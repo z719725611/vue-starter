@@ -33,10 +33,11 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
-	  // UEDITOR_HOME_URL 定义指定生产环境引用ueditor相关资源的路径
+    // UEDITOR_HOME_URL 定义指定生产环境引用ueditor相关资源的路径
     new webpack.DefinePlugin({
       'process.env': env,
-	    UEDITOR_HOME_URL:JSON.stringify("/vue/ueditor/js/")
+      UEDITOR_HOME_URL:JSON.stringify("https://cdns1.dajiashequ.com/" + config.build.projectName + "/ueditor/js/"),
+      UEDITOR_INIT_URL:JSON.stringify("/file/initUeditor")
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -62,27 +63,30 @@ const webpackConfig = merge(baseWebpackConfig, {
       cssProcessorOptions: config.build.productionSourceMap
         ? { safe: true, map: { inline: false } }
         : { safe: true }
-    })
+    }),
+    new webpack.ProvidePlugin({
+      jQuery: "jquery",
+      $: "jquery"
+    }),
+    new QiniuPlugin({
+      ACCESS_KEY: config.build.CDN_AK,
+      SECRET_KEY: config.build.CDN_SK,
+      bucket: config.build.CDN_BUCKET,
+      path: '',
+
+      /**
+       *  You can specify certain file to upload
+       */
+      //include: [],
+    }),
   ].concat(html_template_generator.generate_html_template_list(env)).concat([
-    // copy custom static assets
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: config.build.assetsSubDirectory,
-        ignore: ['.*']
-      }
-    ]),
-    // new QiniuPlugin({
-    //   ACCESS_KEY: config.build.CDN_AK,
-    //   SECRET_KEY: config.build.CDN_SK,
-    //   bucket: config.build.CDN_BUCKET,
-    //   path: '',
-    //
-    //   /**
-    //    *  You can specify certain file to upload
-    //    */
-    //   // include: ['/pbmis/'],
-    // }),
+	  new CopyWebpackPlugin([
+		  {
+			  from: path.resolve(__dirname, '../static'),
+			  to: config.build.assetsSubDirectory,
+			  ignore: ['.*']
+		  }
+	  ]),
     // map.json插件
     map_json_generator.generate_map_json({
       // output file path, relative to process.cwd()

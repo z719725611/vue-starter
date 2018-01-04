@@ -26,11 +26,22 @@ module.exports = {
       "required": true,
       "message": "Project name"
     },
-	  "debugWebServiceName": {
-		  "type": "string",
-		  "required": true,
-		  "message": "Debug Web Service Name"
-	  },
+    "publishWebServiceName": {
+      "type": "string",
+      "required": true,
+      "message": "Publish Web Service Name",
+      "default": function (answers) {
+        return answers.name.replace("-web","-consumer");
+      },
+    },
+    "debugWebServiceName": {
+      "type": "string",
+      "required": true,
+      "message": "Debug Web Service Name",
+      "default": function (answers) {
+        return answers.publishWebServiceName;
+      },
+    },
     "description": {
       "type": "string",
       "required": false,

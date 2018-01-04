@@ -22,10 +22,15 @@ module.exports = merge(baseWebpackConfig, {
 	  // UEDITOR_HOME_URL 定义指定开发环境引用ueditor相关资源的路径
     new webpack.DefinePlugin({
       'process.env': config.dev.env,
-	    UEDITOR_HOME_URL:JSON.stringify("/ueditor/js/")
+	    UEDITOR_HOME_URL:JSON.stringify("/ueditor/js/"),
+	    UEDITOR_INIT_URL:JSON.stringify("/file/initUeditor")
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+	  new webpack.ProvidePlugin({
+		  jQuery: "jquery",
+		  $: "jquery"
+	  })
   ].concat(html_template_generator.generate_html_template_list(config.dev.env)).concat([new FriendlyErrorsPlugin()])
 });
