@@ -11,7 +11,7 @@ exports.generate_html_template_list = function(env) {
     let html_template_config = {
       filename: process.env.NODE_ENV === 'debug'
           ? config.debug.assetsRoot + '/html/vue/' + project + '/' + project + '.html'
-          : config.build.assetsSubDirectory + project + '/' + project + '.html',
+          : config.build.htmlRoot + '/html/vue/' + project + '/' + project + '.html',
       template: 'index.html',
       inject: true,
       minify: {
