@@ -2,6 +2,17 @@
 const config = require('../../../config');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+function getFilename(env, project) {
+  let filename = config.build.htmlRoot + 'html/vue/' + project + '/' + project + '.html';
+  if(env === 'debug') {
+    filename = config.debug.assetsRoot + 'html/vue/' + project + '/' + project + '.html';
+  } else if(env === 'development') {
+    filename = config.build.assetsSubDirectory + project + '/' + project + '.html'
+  }
+  return filename;
+}
+
 // 生成html模版配置
 // 传入参数env : 当前环境配置信息
 exports.generate_html_template_list = function(env) {
@@ -9,9 +20,7 @@ exports.generate_html_template_list = function(env) {
   let template_list = [];
   for (let project of Object.keys(config.project_config.project)) {
     let html_template_config = {
-      filename: process.env.NODE_ENV === 'debug'
-          ? config.debug.assetsRoot + '/html/vue/' + project + '/' + project + '.html'
-          : config.build.htmlRoot + '/html/vue/' + project + '/' + project + '.html',
+      filename: getFilename(process.env.NODE_ENV, project),
       template: 'index.html',
       inject: true,
       minify: {

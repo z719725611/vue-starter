@@ -19,11 +19,11 @@ module.exports = {
         // 项目列表
         // 组织格式 ： 项目名 => 以项目根目录为基准的index.vue路径
         // 其在webpack中的对应格式为：[name](生成的js名) => [main.js所在路径]
-      page1: './src/view/page1', // 示例项目，利用个人blog提供公共api进行测试
-      page2: './src/view/page2', // 示例项目，利用个人blog提供公共api进行测试
+      page1: './src/view/page1', // 示例项目，移动项目
+      page2: './src/view/page2', // 示例项目，与consumer集成开发项目
       ueditor: './src/view/ueditor' // 示例项目，支持ueditor
     },
-    entry: {
+  entry: { //用于配置e2e测试入口
       page1: '/' + name + "/page1/page1.html",
       page2: '/' + name + "/page2/page2.html",
       ueditor: '/' + name + "/ueditor/ueditor.html"

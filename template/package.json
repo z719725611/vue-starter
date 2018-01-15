@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "hui": "^1.0.2",
+    "hui": "1.0.3",
     "mockjs": "1.0.1-beta3",
     "vue": "^2.5.2",
     "vue-navigation": "^1.1.2",
