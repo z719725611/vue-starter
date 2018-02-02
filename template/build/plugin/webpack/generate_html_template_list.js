@@ -9,9 +9,10 @@ exports.generate_html_template_list = function(env) {
   let template_list = [];
   for (let project of Object.keys(config.project_config.project)) {
     let html_template_config = {
-      filename: process.env.NODE_ENV === 'debug'
-          ? config.debug.assetsRoot + '/html/vue/' + project + '/' + project + '.html'
-          : config.build.htmlRoot + '/html/vue/' + project + '/' + project + '.html',
+    filename: process.env.NODE_ENV === 'debug'
+          ? config.debug.assetsRoot + '/html/vue/web/' + project + '/' + project + '.html'
+          : process.env.NODE_ENV === 'production' ? config.build.htmlRoot + '/html/vue/web/' + project + '/' + project + '.html'
+          : config.build.assetsSubDirectory + project + '/' + project + '.html',
       template: 'index.html',
       inject: true,
       minify: {
