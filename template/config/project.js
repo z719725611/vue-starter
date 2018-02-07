@@ -21,7 +21,8 @@ module.exports = {
         // 其在webpack中的对应格式为：[name](生成的js名) => [main.js所在路径]
       page1: './src/view/page1', // 示例项目，移动项目
       page2: './src/view/page2', // 示例项目，与consumer集成开发项目
-      ueditor: './src/view/ueditor' // 示例项目，支持ueditor
+      ueditor: './src/view/ueditor', // 示例项目，支持ueditor
+      magicform: './src/view/magicform'
     },
   entry: { //用于配置e2e测试入口
       page1: '/' + name + "/page1/page1.html",

@@ -39,6 +39,9 @@ module.exports = {
     "no-param-reassign": 0,
     "array-callback-return": 0,
     "prefer-arrow-callback": 0,
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "max-len":[1,200],
+    "no-restricted-syntax": 0,
+    "no-lonely-if": 0
   }
 };
