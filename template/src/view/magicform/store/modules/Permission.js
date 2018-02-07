@@ -55,7 +55,7 @@ function buildRootRouteWithoutChildren(permission) {
     children.url = permission.path;
     children.isLink = permission.isLink;
   } else {
-    children.component = componentMap[permission.path] || placeHolder;
+    children.component = componentMap[permission.resourceCode] || placeHolder;
   }
   result.children = [children];
   return result;
@@ -99,7 +99,7 @@ function buildChildrenRouteWithoutChildren(permission) {
     result.url = permission.path;
     result.isLink = permission.isLink;
   } else {
-    result.component = componentMap[permission.path] || placeHolder;
+    result.component = componentMap[permission.resourceCode] || placeHolder;
   }
   return result;
 }
