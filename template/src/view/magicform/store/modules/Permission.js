@@ -40,7 +40,8 @@ function buildRootRouteWithoutChildren(permission) {
     component: component,
     icon: permission.icon,
     noDropdown: true,
-    resourceCode: encodingResourceCode
+    resourceCode: encodingResourceCode,
+    redirect: encodingResourceCode
   };
   const children = {
     id: permission.id,
@@ -54,7 +55,6 @@ function buildRootRouteWithoutChildren(permission) {
     children.url = permission.path;
     children.isLink = permission.isLink;
   } else {
-    result.redirect = 'index';
     children.component = componentMap[permission.path] || placeHolder;
   }
   result.children = [children];
