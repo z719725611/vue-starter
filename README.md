@@ -23,7 +23,7 @@
 3.通常情况下我们将web工程命名为{projectName}-web，在这里应该是dajia-vuedemo-web,当前路径下执行vue init HUI-UI/vue-starter#develop dajia-vuedemo-web 命令行提示大致如下：
   
 ``` bash
-localhost:dajia-vuedemo lihuanzhong$ vue init ~/Documents/workspace/dajia-vue-skeleton/vue-starter/ dajia-vuedemo-web
+localhost:dajia-vuedemo lihuanzhong$ vue init HUI-UI/vue-starter#develop dajia-vuedemo-web
 
 ? Project name dajia-vuedemo-web
 ? Debug Web Service Name dajia-vuedemo-consumer
