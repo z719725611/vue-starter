@@ -7,7 +7,7 @@ import VueRouter from 'vue-router';
 import Navigation from 'vue-navigation';
 import 'babel-polyfill';
 import main from './main.vue';
-import routes from './router';
+import router from './router';
 import store from './store';
 import './mock/index';
 
@@ -18,12 +18,6 @@ VueRouter.prototype.goBack = function () {
   window.history.go(-1);
 };
 
-const router = new VueRouter({
-  mode: 'hash',   // 强制使用hash模式进行导航，不能指望服务器支持history
-  routes
-});
-
-Vue.use(VueRouter);
 Vue.use(Navigation, { router, store });
 Vue.use(HUI);
 

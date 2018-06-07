@@ -1,9 +1,11 @@
-import HelloWorld from '../pages/HelloWorld.vue';
-import List from '../pages/List.vue';
-import Detail from '../pages/Detail.vue';
+import Vue from 'vue';
+import Router from 'vue-router';
 import PageTransition from '../../../components/PageTransition/index.vue';
 
-const routes =
+const importer = require(`./_import_${process.env.NODE_ENV}`);
+Vue.use(Router);
+
+export const constantRoutes =
   [
     {
       path: '/',
@@ -11,12 +13,15 @@ const routes =
       children: [{
         name: 'List',
         path: '',
-        component: List
+        component: importer('List')
       }, {
         name: 'Detail',
         path: '/detail',
-        component: Detail
+        component: importer('Detail')
       }]
     }
   ];
-export default routes;
+export default new Router({
+  mode: 'hash',   // 强制使用hash模式进行导航，不能指望服务器支持history
+  routes: constantRoutes  // （缩写）相当于 routes: routes
+});
